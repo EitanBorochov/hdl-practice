@@ -8,7 +8,7 @@ module tb;
 
     // Instantiate DUT
     // TODO: connect to top_module signals
-    top_module dut (.*);
+    top_module DUT(.*);
 
     initial begin
         $dumpfile("wave.vcd");
