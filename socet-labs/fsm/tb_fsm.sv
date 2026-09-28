@@ -132,17 +132,18 @@ module tb_fsm;
         $timeformat(-9, 2, " ns", 20); // Set formatting for printing time
 
         // Generate test cases
-        tests = new[6]; // Create dynamically sized array 
+        tests = new[7]; // Create dynamically sized array 
         tests[0] = gen_test(8'd5, 1'b1); // 5 should be divisible by 5!
         tests[1] = gen_test(8'd1, 1'b0); // 1 is not divisible by 5
         tests[2] = gen_test(8'd255, 1'b1); // 255 is divisible by 5
 
         // TODO: Create a couple more test cases. Make sure to change the
         // size of the array on the line with the call to "new[3]"!
-        // All three of these should not be divisible by 5:
+        // All four of these should not be divisible by 5:
         tests[3] = gen_test(8'd2, 1'b0);
         tests[4] = gen_test(8'd3, 1'b0);
         tests[5] = gen_test(8'd4, 1'b0);
+        tests[6] = gen_test(8'd254, 1'b0); //testing a really big number that is not divisible
 
         // Run the reset task
         reset();
@@ -150,7 +151,7 @@ module tb_fsm;
         // TODO: Run your test cases by looping through the array and calling
         // your "send_stream" task! Don't forget to reset between calls, or
         // your FSM won't start in the correct state.
-        for(int i = 0; i < 3; i++) begin
+        for(int i = 0; i < 7; i++) begin
             send_stream(tests[i]);
         end
         // Signal simulation to stop, all tests complete
